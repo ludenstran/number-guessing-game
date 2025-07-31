@@ -59,7 +59,7 @@
 // Khai báo biến //
 let secretNumber = 0;
 let currentScore = 100;
-let attemptsAvailable = 1;
+let attemptsUsed = 0;
 let isAlive = true;
 let guessesHistory = [];
 
@@ -82,8 +82,8 @@ function setGameState() {
   currentScore = 100;
   attemptStatEl.textContent = "10/10";
   secretNumber = generateRandomNumber();
-  attemptsAvailable = 0;
-  attemptStatEl.textContent = attemptsAvailable + "/10";
+  attemptsUsed = 0;
+  attemptStatEl.textContent = attemptsUsed + "/10";
   console.log("Số ngẫu nhiên là" + " " + secretNumber);
 }
 
@@ -108,54 +108,51 @@ function processGuess() {
       secretNumber +
       ". Bạn đã thắng với 100 điểm!";
     isAlive = false;
-    attemptsAvailable += 1;
-    attemptStatEl.textContent = attemptsAvailable + "/10";
   } else if (userValue < secretNumber) {
     gameStateEl.textContent =
       "📉 Số bạn đoán THẤP quá! Thử số lớn hơn" + " " + userValue;
-    isAlive = true;
-    attemptsAvailable += 1;
-    attemptStatEl.textContent = attemptsAvailable + "/10";
   } else {
     gameStateEl.textContent =
       "📈 Số bạn đoán CAO quá! Thử số nhỏ hơn" + " " + userValue;
-    isAlive = true;
-    attemptsAvailable += 1;
-    attemptStatEl.textContent = attemptsAvailable + "/10";
   }
 }
 
-// Cập nhật stats //
+// Cập nhật điểm //
 
 function updateScore() {
   if (isAlive) {
     currentScore -= 10;
     scoreStatEl.textContent = currentScore;
+  } else {
+    return currentScore;
   }
 }
 
 // Update số lượt còn lại //
 
 function updateAttemps() {
-  if (attemptsAvailable === 10) {
-    gameStateEl.textContent =
-      "💔 Hết lượt rồi! Số bí mật là" +
-      " " +
-      secretNumber +
-      "." +
-      "Chúc bạn may mắn lần sau!";
-  } else if (attemptsAvailable > 10) {
-    attemptStatEl.textContent = "10/10";
-  } else {
+  if (isAlive) {
+    attemptsUsed += 1;
+    attemptStatEl.textContent = attemptsUsed + "/10";
   }
+
+  if (attemptsUsed === 10) {
+    isAlive = false;
+    gameStateEl.textContent = "💔 Hết lượt rồi! Số bí mật là " + secretNumber;
+  }
+}
+
+// Update gameState //
+function renderGame() {
+  getUserInput();
+  processGuess();
+  updateScore();
+  updateAttemps();
 }
 
 // Thực thi hành động Submit //
 
 submitBtnEl.addEventListener("click", function () {
-  getUserInput();
-  processGuess();
-  updateScore();
-  updateAttemps();
-  console.log(attemptsAvailable);
+  renderGame();
+  console.log(attemptsUsed);
 });
