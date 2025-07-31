@@ -80,10 +80,11 @@ function generateRandomNumber() {
 // Tạo kết quả ngẫu nhiên //
 function setGameState() {
   currentScore = 100;
-  attemptStatEl.textContent = "10/10";
   secretNumber = generateRandomNumber();
   attemptsUsed = 0;
   attemptStatEl.textContent = attemptsUsed + "/10";
+  scoreStatEl.textContent = currentScore;
+  gameStateEl.textContent = '🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!';
   console.log("Số ngẫu nhiên là" + " " + secretNumber);
 }
 
@@ -92,12 +93,9 @@ setGameState();
 
 // Reset game
 function resetGame() {
+  submitBtnEl.disabled = false;
   userInputEl.value = "";
-  currentScore = 100;
-  scoreStatEl.textContent = 100;
-  attemptsUsed = 0;
   isAlive = true;
-  gameStateEl.textContent = '🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!';
 }
 
 // Lấy input từ user
