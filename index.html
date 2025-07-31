@@ -29,9 +29,9 @@
                 <P class="stat-value">1-100</P>
             </div>
         </div>
-        <p class="result">🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!</p>
+        <p class="result" id="game-state">🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!</p>
         <div class="input-container">
-            <input id="user-input" type="number" min="1" max="100" placeholder="Nhập số của bạn...">
+            <input id="user-input" type="text" maxlength="3" onchange="limiter(this);" placeholder="Nhập số của bạn...">
             <button id="submit-btn" class="btn-submit">Đoán</button>
         </div>
         <div class="history-section">
