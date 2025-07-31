@@ -94,7 +94,7 @@ setGameState();
 function resetGame() {
   userInputEl.value = "";
   currentScore = 100;
-  scoreStatEl.textContent = 0;
+  scoreStatEl.textContent = 100;
   attemptsUsed = 0;
   isAlive = true;
   gameStateEl.textContent = '🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!';
