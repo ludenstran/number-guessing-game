@@ -18,11 +18,11 @@
         <div class="main-section">
             <div class="stat-item">
                 <p class="stat-label">ĐIỂM SỐ</p>
-                <P class="stat-value">100</P>
+                <P class="stat-value" id="current-stat-score">100</P>
             </div>
             <div class="stat-item">
                 <p class="stat-label">LẦN THỬ</p>
-                <P class="stat-value">0/10</P>
+                <P class="stat-value" id="attemps-used">0/10</P>
             </div>
             <div class="stat-item">
                 <p class="stat-label">PHẠM VI</p>
@@ -31,15 +31,15 @@
         </div>
         <p class="result">🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!</p>
         <div class="input-container">
-            <input type="number" min="1" max="100" placeholder="Nhập số của bạn...">
-            <button class="btn-guess">Đoán</button>
+            <input id="user-input" type="number" min="1" max="100" placeholder="Nhập số của bạn...">
+            <button id="submit-btn" class="btn-submit">Đoán</button>
         </div>
         <div class="history-section">
             <h4>📝 Lịch sử đoán</h4>
-            <ul class="history-list-container"></ul>
-        </div>`
+            <ul id="guess-history" class="history-list-container"></ul>
+        </div>
         <div class="control-section">
-            <button class="btn-newgame">Game mới</button>
+            <button id="new-game-btn" class="btn-newgame">Game mới</button>
         </div>
     </div>
 
