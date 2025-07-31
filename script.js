@@ -90,6 +90,16 @@ function setGameState() {
 // Bắt đầu game
 setGameState();
 
+// Reset game
+function resetGame() {
+  userInputEl.value = "";
+  currentScore = 100;
+  scoreStatEl.textContent = 0;
+  attemptsUsed = 0;
+  isAlive = true;
+  gameStateEl.textContent = '🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!';
+}
+
 // Lấy input từ user
 function getUserInput() {
   const userGuess = userInputEl.value;
@@ -106,7 +116,10 @@ function processGuess() {
     gameStateEl.textContent =
       "🎉 Xuất sắc! Số bí mật là " +
       secretNumber +
-      ". Bạn đã thắng với 100 điểm!";
+      ". Bạn đã thắng với" +
+      " " +
+      currentScore +
+      " điểm";
     isAlive = false;
   } else if (userValue < secretNumber) {
     gameStateEl.textContent =
@@ -123,8 +136,6 @@ function updateScore() {
   if (isAlive) {
     currentScore -= 10;
     scoreStatEl.textContent = currentScore;
-  } else {
-    return currentScore;
   }
 }
 
@@ -136,23 +147,51 @@ function updateAttemps() {
     attemptStatEl.textContent = attemptsUsed + "/10";
   }
 
-  if (attemptsUsed === 10) {
-    isAlive = false;
-    gameStateEl.textContent = "💔 Hết lượt rồi! Số bí mật là " + secretNumber;
+  if (!isAlive) {
+    attemptsUsed += 1;
+    attemptStatEl.textContent = attemptsUsed + "/10";
   }
 }
 
-// Update gameState //
+// Trả kết quả //
+function returnResult() {
+  if (!isAlive) {
+    endGame();
+  }
+
+  if (attemptsUsed === 10) {
+    gameStateEl.textContent =
+      "💔 Hết lượt rồi! Số bí mật là " +
+      secretNumber +
+      ". Chúc bạn may mắn lần sau!";
+    endGame();
+  }
+}
+
+// Render game //
 function renderGame() {
   getUserInput();
   processGuess();
   updateScore();
   updateAttemps();
+  returnResult();
 }
 
-// Thực thi hành động Submit //
+// Kết thúc game //
+
+function endGame() {
+  submitBtnEl.disabled = true;
+}
+
+// Thực thi hành động Guess //
 
 submitBtnEl.addEventListener("click", function () {
   renderGame();
   console.log(attemptsUsed);
+});
+
+// Reset Game //
+resetBtnEl.addEventListener("click", function () {
+  resetGame();
+  setGameState();
 });
