@@ -86,6 +86,7 @@ function setGameState() {
   attemptStatEl.textContent = attemptsUsed + "/10";
   scoreStatEl.textContent = currentScore;
   gameStateEl.textContent = '🤔 Hãy nhập một số từ 1 đến 100 và bấm "Đoán"!';
+  guessListEl.textContent = "Chưa có lần đoán nào";
   console.log("Số ngẫu nhiên là" + " " + secretNumber);
 }
 
@@ -113,7 +114,7 @@ function saveUserInput() {
   guessesHistory.push(userInput);
 }
 
-// Lưu input vào array
+// Lưu input vào array và thể hiện lên UI
 function pushHistory() {
   let guessItem = "";
   for (let i = 0; i < guessesHistory.length; i++) {
