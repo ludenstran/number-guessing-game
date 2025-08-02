@@ -152,7 +152,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
+ 
 .btn-submit:disabled {
     background: #6c757d;
     cursor: not-allowed;
