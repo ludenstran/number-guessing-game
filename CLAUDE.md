@@ -2,6 +2,10 @@
 
 Tài liệu này cung cấp hướng dẫn cho Claude Code (claude.ai/code) khi làm việc với mã nguồn trong repository này.
 
+## Ngôn ngữ giao tiếp
+
+**QUAN TRỌNG**: Khi làm việc với dự án này, Claude PHẢI sử dụng tiếng Việt trong tất cả các phản hồi, giải thích và hướng dẫn. Điều này để đảm bảo tính nhất quán với ngôn ngữ của dự án và tạo trải nghiệm tốt nhất cho nhà phát triển Việt Nam.
+
 ## Tổng quan dự án
 
 Đây là game đoán số bằng tiếng Việt được xây dựng với HTML, CSS và JavaScript thuần. Game thử thách người chơi đoán một số ngẫu nhiên từ 1-100 trong vòng 10 lần thử, với hệ thống tính điểm bắt đầu từ 100 điểm và giảm 10 điểm cho mỗi lần đoán sai.
