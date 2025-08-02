@@ -114,16 +114,6 @@ function saveUserInput() {
   guessesHistory.push(userInput);
 }
 
-// Lưu input vào array và thể hiện lên UI
-function pushHistory() {
-  let guessItem = "";
-  for (let i = 0; i < guessesHistory.length; i++) {
-    const attemptNumber = i + 1;
-    guessItem += `<li class="history-item"> Lần ${attemptNumber}: ${guessesHistory[i]} </li>`;
-  }
-  guessListEl.innerHTML = guessItem;
-}
-
 // Đối chiếu input với secret Number //
 function processGuess() {
   const userValue = parseInt(getUserInput());
@@ -145,8 +135,35 @@ function processGuess() {
   }
 }
 
-// Cập nhật điểm //
+// Update input vào array và thể hiện lên UI
+function updateHistory() {
+  let historyHTML = "";
 
+  for (let i = 0; i < guessesHistory.length; i++) {
+    const attemptNumber = i + 1;
+    const currentGuess = guessesHistory[i];
+    let resultTag = "";
+
+    if (currentGuess > secretNumber) {
+      resultTag = "Cao quá";
+    } else if (currentGuess < secretNumber) {
+      resultTag = "Thấp quá";
+    } else {
+      resultTag = "Chính xác";
+    }
+
+    historyHTML += `<li class="history-item">
+                    <div>
+                        Lần ${attemptNumber}: ${currentGuess}
+                    </div>
+                    <p class="result-tag">${resultTag}</p>
+                  </li>`;
+  }
+
+  guessListEl.innerHTML = historyHTML;
+}
+
+// Update điểm //
 function updateScore() {
   if (isAlive) {
     currentScore -= 10;
@@ -155,7 +172,6 @@ function updateScore() {
 }
 
 // Update số lượt còn lại //
-
 function updateAttemps() {
   if (isAlive) {
     attemptsUsed += 1;
@@ -183,30 +199,30 @@ function returnResult() {
   }
 }
 
-// Render game //
-function renderGame() {
-  saveUserInput();
-  pushHistory();
-  processGuess();
-  updateScore();
-  updateAttemps();
-  returnResult();
-}
-
-// Kết thúc game //
+// Kết thúc game
 
 function endGame() {
   submitBtnEl.disabled = true;
 }
 
-// Thực thi hành động Guess //
+// Render game
+function renderGame() {
+  saveUserInput();
+  processGuess();
+  updateHistory();
+  updateScore();
+  updateAttemps();
+  returnResult();
+}
+
+// Guess Button
 
 submitBtnEl.addEventListener("click", function () {
   renderGame();
   console.log(attemptsUsed);
 });
 
-// Reset Game //
+// Reset Button
 resetBtnEl.addEventListener("click", function () {
   resetGame();
   setGameState();

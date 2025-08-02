@@ -218,6 +218,15 @@ body {
     font-weight: 500;
 }
 
+.result-tag{
+    font-size: 14px;
+    padding: 8px;
+    font-weight: 600;
+    color: white;
+    background-color: #222;
+    border-radius: 4px;
+}
+
 .result-high {
     background: #ffebee;
     color: #c62828;
