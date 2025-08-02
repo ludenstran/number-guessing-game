@@ -154,7 +154,7 @@ body {
 }
  
 .btn-submit:disabled {
-    background: #6c757d;
+    background: #717b83;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
