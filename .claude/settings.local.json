@@ -3,7 +3,9 @@
     "allow": [
       "mcp__context7__resolve-library-id",
       "mcp__context7__get-library-docs",
-      "Bash(echo $MCP_SERVERS)"
+      "Bash(echo $MCP_SERVERS)",
+      "Bash(git push:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
