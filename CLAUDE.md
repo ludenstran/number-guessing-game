@@ -75,3 +75,49 @@ Vì đây là ứng dụng web client-side:
 - Comment tiếng Việt chi tiết giải thích các giai đoạn và kiến trúc game
 - Kết hợp tên function tiếng Anh với comment tiếng Việt
 - CSS comprehensive với gradient styling và responsive design
+
+## Code Review & Status
+
+### 📊 Đánh giá tổng thể: 7.5/10
+
+**Lần review gần nhất**: 2025-08-02
+
+#### Điểm mạnh xuất sắc
+- **Architecture Design**: 6-phase structure chuyên nghiệp với documentation chi tiết
+- **UI/UX Design**: Giao diện đẹp, responsive, hệ thống màu nhất quán
+- **Code Organization**: HTML semantic, CSS component-based, JavaScript có cấu trúc rõ ràng
+- **Localization**: Content tiếng Việt hoàn chỉnh với emoji indicators
+
+#### 🚨 Vấn đề Critical cần sửa ngay
+
+**1. Scoring Logic Bug** (script.js:167-172):
+- **Vấn đề**: Điểm số bị trừ kể cả khi đoán đúng
+- **Impact**: Game không hoạt động đúng logic
+- **Priority**: CRITICAL
+
+**2. HTML Consistency Issues**:
+- `lang="en"` nhưng content tiếng Việt → cần `lang="vi"`
+- Inconsistent tags: `<P>` vs `<p>` (dòng 21, 25, 29)
+- Typo: `attemps-used` → `attempts-used`
+
+**3. Input Validation Missing**:
+- Không kiểm tra input hợp lệ (1-100, phải là số)
+- Có thể nhập text hoặc số ngoài phạm vi
+
+#### ⚡ Cải tiến UX cần thiết
+
+- **Enter Key Support**: Chưa support nhấn Enter để submit
+- **Input Clear**: Không clear input sau mỗi guess
+- **Error Feedback**: Thiếu validation messages
+- **Loading States**: Không có feedback khi processing
+
+#### 📈 Code Quality Issues
+
+- **Variable Naming**: `updateAttemps()` có typo
+- **CSS Enhancements**: Thiếu hover effects cho buttons
+- **Empty Functions**: Một số function stubs chưa implement
+
+### 🔄 Change Tracking
+
+Xem `CHANGELOG.md` để theo dõi tất cả thay đổi và cải tiến theo thời gian.
+Xem `IMPROVEMENTS.md` để biết roadmap và kế hoạch cải tiến chi tiết.
