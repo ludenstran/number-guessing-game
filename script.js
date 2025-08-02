@@ -70,6 +70,7 @@ const scoreStatEl = document.getElementById("current-stat-score");
 const attemptStatEl = document.getElementById("attemps-used");
 const gameStateEl = document.getElementById("game-state");
 const userInputEl = document.getElementById("user-input");
+const guessListEl = document.getElementById("guess-history");
 
 // Random number generator - Tạo số bí mật 1-100
 function generateRandomNumber() {
@@ -96,6 +97,8 @@ function resetGame() {
   submitBtnEl.disabled = false;
   userInputEl.value = "";
   isAlive = true;
+  guessesHistory = [];
+  guessListEl.innerHTML = "";
 }
 
 // Lấy input từ user
@@ -104,8 +107,21 @@ function getUserInput() {
   return userGuess;
 }
 
-// Limit input //
-function limiter(input) {}
+// Save input từ user
+function saveUserInput() {
+  const userInput = getUserInput();
+  guessesHistory.push(userInput);
+}
+
+// Lưu input vào array
+function pushHistory() {
+  let guessItem = "";
+  for (let i = 0; i < guessesHistory.length; i++) {
+    const attemptNumber = i + 1;
+    guessItem += `<li class="history-item"> Lần ${attemptNumber}: ${guessesHistory[i]} </li>`;
+  }
+  guessListEl.innerHTML = guessItem;
+}
 
 // Đối chiếu input với secret Number //
 function processGuess() {
@@ -168,7 +184,8 @@ function returnResult() {
 
 // Render game //
 function renderGame() {
-  getUserInput();
+  saveUserInput();
+  pushHistory();
   processGuess();
   updateScore();
   updateAttemps();
